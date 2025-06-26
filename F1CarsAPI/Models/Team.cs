@@ -5,6 +5,8 @@
         public int Id { get; set; }
         public string Name { get; set; }
         public string Country { get; set; }
-        public List<Car> Cars { get; set; }   
+        public List<Car> Cars { get; }   
+        public DateTimeOffset Created { get; set; }
+
     }
 }

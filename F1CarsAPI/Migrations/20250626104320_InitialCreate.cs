@@ -33,6 +33,7 @@ namespace F1CarsAPI.Migrations
                     Model = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Year = table.Column<int>(type: "int", nullable: false),
                     Horsepower = table.Column<int>(type: "int", nullable: false),
+                    
                     teamId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

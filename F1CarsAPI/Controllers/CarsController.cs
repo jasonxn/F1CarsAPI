@@ -27,8 +27,7 @@ namespace F1CarsAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Car>> GetCar(int id)
         {
-            var car = await _context.Cars
-                .FindAsync(id);
+            var car = await _context.Cars.FindAsync(id);
             if (car == null)
             {
                 return NotFound();

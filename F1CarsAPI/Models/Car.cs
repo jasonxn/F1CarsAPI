@@ -7,6 +7,6 @@
         public int Year { get; set; }
         public int Horsepower { get; set; }
         public int teamId { get; set; }
-        public Team Team { get; set; }
+        public Team Team { get; }
     }
 }

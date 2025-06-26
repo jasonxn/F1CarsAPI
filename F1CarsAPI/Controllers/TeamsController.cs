@@ -19,7 +19,7 @@ namespace F1CarsAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Team>>> GetTeams()
         {
-            return await _context.Teams.ToListAsync();
+            return await _context.Teams.ToListAsync().ConfigureAwait(false);
         }
         // GET: api/teams/{id}
         [HttpGet("{id}")]

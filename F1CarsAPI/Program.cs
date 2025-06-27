@@ -1,4 +1,6 @@
 using F1CarsAPI.Data;
+using F1CarsAPI.Services;
+using F1CarsAPI.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +14,12 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 // Register the DbContext with dependency injection
+
+builder.Services.AddScoped<ITeamService, TeamService>();
+// team service registration
+builder.Services.AddScoped<ICarService, CarService>();
+
+
 
 var app = builder.Build();
 

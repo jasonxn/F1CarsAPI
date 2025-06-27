@@ -5,8 +5,10 @@
         public int Id { get; set; }
         public string Name { get; set; }
         public string Country { get; set; }
-        public List<Car> Cars { get; }   
-        public DateTimeOffset Created { get; set; }
+        public List<Car> Cars { get; } = new();
+        public DateTimeOffset CreatedAt { get; set; }
+        public DateTimeOffset? UpdatedAt { get; set; }
+        public DateTimeOffset? DeletedAt { get; set; }
 
     }
 }

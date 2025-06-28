@@ -22,14 +22,14 @@ namespace F1CarsAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Team>>> GetTeams()
         {
-            var teams = await _teamService.GetAllTeamsAsync();
+            var teams = await _teamService.GetAllTeamsAsync().ConfigureAwait(false);
             return Ok(teams);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Team>> GetTeam(int id)
         {
-            var team = await _teamService.GetTeamByIdAsync(id);
+            var team = await _teamService.GetTeamByIdAsync(id).ConfigureAwait(false);
             if (team == null)
                 return NotFound();
 
@@ -39,14 +39,14 @@ namespace F1CarsAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Team>> PostTeam(Team team)
         {
-            var created = await _teamService.CreateTeamAsync(team);
+            var created = await _teamService.CreateTeamAsync(team).ConfigureAwait(false);
             return CreatedAtAction(nameof(GetTeam), new { id = created.Id }, created);
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTeam(int id, Team team)
         {
-            var success = await _teamService.UpdateTeamAsync(id, team);
+            var success = await _teamService.UpdateTeamAsync(id, team).ConfigureAwait(false);
             if (!success)
                 return NotFound();
 
@@ -56,7 +56,7 @@ namespace F1CarsAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTeam(int id)
         {
-            var deleted = await _teamService.DeleteTeamAsync(id);
+            var deleted = await _teamService.DeleteTeamAsync(id).ConfigureAwait(false);
             if (!deleted)
                 return NotFound();
 

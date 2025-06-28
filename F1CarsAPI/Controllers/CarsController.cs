@@ -1,6 +1,7 @@
 ﻿using F1CarsAPI.Data;
 using F1CarsAPI.Models;
 using F1CarsAPI.Services.Interfaces;
+using F1CarsAPI.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -25,7 +26,7 @@ namespace F1CarsAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Car>>> GetCars()
         {
-            var cars = await _carService.GetAllCarsAsync();
+            var cars = await _carService.GetAllCarsAsync().ConfigureAwait(false); 
             return Ok(cars);
         }
 
@@ -33,7 +34,7 @@ namespace F1CarsAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Car>> GetCar(int id)
         {
-            var car = await _carService.GetCarByIdAsync(id);
+            var car = await _carService.GetCarByIdAsync(id).ConfigureAwait(false); 
             if (car == null)
                 return NotFound();
 
@@ -42,9 +43,9 @@ namespace F1CarsAPI.Controllers
 
         // POST: api/cars
         [HttpPost]
-        public async Task<ActionResult<Car>> PostCar(Car car)
+        public async Task<ActionResult<Car>> PostCar(CreateCarRequestModel car)
         {
-            var created = await _carService.CreateCarAsync(car);
+            var created = await _carService.CreateCarAsync(car).ConfigureAwait(false); 
             return CreatedAtAction(nameof(GetCar), new { id = created.Id }, created);
         }
 
@@ -52,7 +53,7 @@ namespace F1CarsAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCar(int id, Car car)
         {
-            var success = await _carService.UpdateCarAsync(id, car);
+            var success = await _carService.UpdateCarAsync(id, car).ConfigureAwait(false); 
             if (!success)
                 return NotFound();
 
@@ -63,7 +64,7 @@ namespace F1CarsAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCar(int id)
         {
-            var deleted = await _carService.DeleteCarAsync(id);
+            var deleted = await _carService.DeleteCarAsync(id).ConfigureAwait(false);
             if (!deleted)
                 return NotFound();
 
